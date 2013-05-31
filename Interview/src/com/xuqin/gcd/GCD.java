@@ -1,5 +1,4 @@
 package com.xuqin.gcd;
-
 public class GCD {
 	public static int gcd(int m, int n) {
 		if(m<=0 || n<=0 || m<n) {
