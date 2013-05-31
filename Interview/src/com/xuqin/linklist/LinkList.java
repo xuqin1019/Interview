@@ -1,5 +1,8 @@
 package com.xuqin.linklist;
 
+import java.util.ArrayList;
+import java.util.List;
+
 class Node<T> {
 	T value;
 	Node<T> next=null;
@@ -75,10 +78,17 @@ public class LinkList<T> {
 		if(isEmpty()) {
 			return null;
 		}
-		Object [] values = new Object[size];
+		List<T> list = new ArrayList<T>();
+		//Object [] values = new Object[size];
 		Node<T> node = header;
 		while(node.next!=null) {
-			
+			list.add(node.next.value);
+			node = node.next;
 		}
+		return list.toArray(new Object[size]);
+	}
+	
+	public int getSize() {
+		return size;
 	}
 }
