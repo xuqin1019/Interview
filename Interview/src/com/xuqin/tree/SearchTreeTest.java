@@ -35,6 +35,9 @@ public class SearchTreeTest {
 		results = convertResults(searchTree.midOrder());
 		assertEquals(new Integer[] {2,3,4,6,7,8,10,11,12},results);
 		
+		results = convertResults(searchTree.levelOrder());
+		assertEquals(new Integer[] {8,4,11,2,7,10,12,3,6},results);
+		
 	}
 	
 	private Integer[] convertResults(Object [] results) {

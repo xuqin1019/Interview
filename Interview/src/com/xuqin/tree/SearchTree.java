@@ -3,6 +3,8 @@ package com.xuqin.tree;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 class TreeNode<T extends Comparable<T>> {
 	T element;
@@ -128,6 +130,24 @@ public class SearchTree<T extends Comparable<T>> {
 		return results.toArray();
 	}
 	
-	
+	public Object[] levelOrder() {
+		if(root==null) {
+			return null;
+		}
+		List<Object> results = new ArrayList<Object>();
+		Queue<TreeNode<T>> queue = new LinkedBlockingQueue<TreeNode<T>>();
+		queue.add(root);
+		while(queue.size()!=0) {
+			TreeNode<T> treeNode = queue.remove();
+			results.add(treeNode.element);
+			if(treeNode.leftNode!=null) {
+				queue.add(treeNode.leftNode);
+			} 
+			if(treeNode.rightNode!=null) {
+				queue.add(treeNode.rightNode);
+			}
+		}
+		return results.toArray();
+	}
 	
 }
