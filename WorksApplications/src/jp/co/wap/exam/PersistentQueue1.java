@@ -2,7 +2,6 @@ package jp.co.wap.exam;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.List;
 
 /**
  * The Queue class represents an immutable first-in-first-out(FIFO) queue of objects.
