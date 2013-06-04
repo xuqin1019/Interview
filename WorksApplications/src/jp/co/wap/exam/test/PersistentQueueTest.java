@@ -36,11 +36,11 @@ public class PersistentQueueTest {
 		for(int i=0;i<10;++i) {
 			for(int j=0;j<10;++j) {
 				persistentQueue=persistentQueue.enqueue(j);
-				time+=persistentQueue.getTimes();
+				//time+=persistentQueue.getTimes();
 			}
 			for(int k=0;k<5;++k) {
 				persistentQueue = persistentQueue.dequeue();
-				time+=persistentQueue.getTimes();
+				//time+=persistentQueue.getTimes();
 			}
 		}
 		

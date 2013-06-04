@@ -15,7 +15,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * @author xuqin
- *
+ * BFS (minum path length)
  * 
  */
 

@@ -1,6 +1,8 @@
 package jp.co.wap.exam;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Stack;
 
 /**
  * The Queue class represents an immutable first-in-first-out(FIFO) queue of objects.
@@ -8,17 +10,22 @@ import java.util.Stack;
  * 
  */
 
+/**
+ * @author xuqin
+ *
+ * 
+ */
 public class PersistentQueue<E> {
-	private final Stack<E> s1;
-	private final Stack<E> s2;
+	private final List<E> s1;         //the list for enqueuing 
+	private final List<E> s2;         //the list for dequeuing
 	
 	public PersistentQueue() {
 		//modify this constructor if necessary , but do not remove it
-		s1=new Stack<E>();
-		s2=new Stack<E>();
+		s1=new ArrayList<E>();
+		s2=new ArrayList<E>();
 	}
 	
-	private PersistentQueue(Stack<E> s1 , Stack<E> s2) {
+	private PersistentQueue(List<E> s1 , List<E> s2) {
 		//modify or remove this constructor if necessary
 		this.s1 = s1;
 		this.s2 = s2;
@@ -30,45 +37,45 @@ public class PersistentQueue<E> {
 		if(e==null) {
 			throw new IllegalArgumentException();
 		}
-		Stack<E> cloneS1 = (Stack<E>) s1.clone();
-		cloneS1.push(e);
+		List<E> cloneS1 = new ArrayList<E>(s1);
+		cloneS1.add(e);
 		return new PersistentQueue<E>(cloneS1,s2);
 	}
 	
 	public PersistentQueue<E> dequeue() {
 		//TODO: make this method faster
-		if(s1.empty() && s2.empty()) {
+		if(s1.isEmpty() && s2.isEmpty()) {
 			throw new NoSuchElementException();
 		}
-		if(!s2.empty()) {
-			Stack<E> cloneS2 = (Stack<E>) s2.clone(); 
-			cloneS2.pop();
+		
+		if(!s2.isEmpty()) {
+			List<E> cloneS2 = new ArrayList<E>(s2); 
+			cloneS2.remove(cloneS2.size()-1);
 			return new PersistentQueue<E>(s1, cloneS2);
 		}
-		Stack<E> cloneS1 = (Stack<E>) s1.clone();
-		Stack<E> cloneS2 = (Stack<E>) s2.clone();
-		while(!cloneS1.empty()) {
-			cloneS2.push(cloneS1.pop());
+		
+		List<E> cloneS1 =  new ArrayList<E>(s1);
+		List<E> cloneS2 = new ArrayList<E>(s2);
+		
+		while(!cloneS1.isEmpty()) {
+			cloneS2.add(cloneS1.remove(cloneS1.size()-1));
 		}
-		cloneS2.pop();
+		cloneS2.remove(cloneS2.size()-1);
+		
 		return new PersistentQueue<E>(cloneS1,cloneS2);
 	}
 	
 	public E peek() {
 		//modify this method if needed
-		if(s1.isEmpty() && s2.empty()) {
+		if(s1.isEmpty() && s2.isEmpty()) {
 			throw new NoSuchElementException();
 		}
 		
-		if(!s2.empty()) {
-			return s2.peek();
+		if(!s2.isEmpty()) {
+			return s2.get(s2.size()-1);
+		} else {
+			return s1.get(0);
 		}
-		Stack<E> cloneS1 = (Stack<E>) s1.clone();
-		Stack<E> cloneS2 = (Stack<E>) s2.clone();
-		while(!cloneS1.empty()) {
-			cloneS2.push(cloneS1.pop());
-		}
-		return cloneS2.peek();
 	}
 	
 	public int size() {
