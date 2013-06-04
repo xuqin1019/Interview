@@ -48,7 +48,7 @@ public class Problem2 {
 		
 		int maxWorkingTime=0;
 		
-		//use a map to keep the max working time associated with each particular interval 
+		//DP (use a map to keep the max working time associated with each particular interval)
 		Map<Interval,Integer> preResult = new HashMap<Interval, Integer>();
 		preResult.put(null,0);
 		for(int i=0;i<intervals.size();++i) {

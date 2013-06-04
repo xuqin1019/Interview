@@ -23,6 +23,8 @@ public class CuttingRodTest {
 	public void test() {
 		assertEquals(22, cuttingRod.maxPrice(new int[]{1, 5, 8, 9, 10, 17, 17, 20}));
 		assertEquals(24, cuttingRod.maxPrice(new int[]{3, 5, 8, 9, 10, 17, 17, 20}));
+		assertEquals(27, cuttingRod.maxPrice(new int[]{1, 5, 8, 9, 10, 17, 17, 20,24,26}));
+		
 	}
 
 }
