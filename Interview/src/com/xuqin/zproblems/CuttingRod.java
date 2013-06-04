@@ -3,9 +3,7 @@
  */
 package com.xuqin.zproblems;
 
-import java.awt.print.Printable;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
