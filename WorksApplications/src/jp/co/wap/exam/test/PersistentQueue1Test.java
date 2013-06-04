@@ -45,11 +45,11 @@ public class PersistentQueue1Test {
 		for(int i=0;i<10;++i) {
 			for(int j=0;j<10;++j) {
 				PersistentQueue1=PersistentQueue1.enqueue(j);
-				time+=PersistentQueue1.getTimes();
+				//time+=PersistentQueue1.getTimes();
 			}
 			for(int k=0;k<5;++k) {
 				PersistentQueue1 = PersistentQueue1.dequeue();
-				time+=PersistentQueue1.getTimes();
+				//time+=PersistentQueue1.getTimes();
 			}
 		}
 		
@@ -103,11 +103,11 @@ public class PersistentQueue1Test {
 			int value = r.nextInt();
 			if(value%2==0) {
 				persistentQueue1 = persistentQueue1.enqueue(value);
-				time+=persistentQueue1.getTimes();
+			//	time+=persistentQueue1.getTimes();
 			} else {
 				if(persistentQueue1.size()>0) {
 					persistentQueue1 = persistentQueue1.dequeue();
-					time+=persistentQueue1.getTimes();
+			//		time+=persistentQueue1.getTimes();
 				}
 			}
 		}
@@ -148,11 +148,11 @@ public class PersistentQueue1Test {
 				int value = r.nextInt();
 				if(value%2==0) {
 					persistentQueue1 = persistentQueue1.enqueue(value);
-					time+=persistentQueue1.getTimes();
+		//			time+=persistentQueue1.getTimes();
 				} else {
 					if(persistentQueue1.size()>0) {
 						persistentQueue1 = persistentQueue1.dequeue();
-						time+=persistentQueue1.getTimes();
+		//				time+=persistentQueue1.getTimes();
 					}
 				}
 			}
