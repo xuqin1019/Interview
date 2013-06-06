@@ -19,12 +19,14 @@ import org.junit.runners.JUnit4;
 public class StockTest {
 	private Stock1 stock1;
 	private Stock2 stock2;
+	private Stock3 stock3;
 	
 	
 	@Before
 	public void init() {
 		stock1 = new Stock1();
 		stock2 = new Stock2();
+		stock3 = new Stock3();
 	}
 	
 	@Test
@@ -33,5 +35,8 @@ public class StockTest {
 		assertEquals(8, stock1.maxProfitDC(new int[]{5,8,4,10,7,12,6}));
 		
 		assertEquals(27, stock2.maxProfit(new int[]{5,8,4,10,7,3,12,6,15}));
+		assertEquals(27, stock2.maxProfitBest(new int[]{5,8,4,10,7,3,12,6,15}));
+		
+		assertEquals(18, stock3.maxProfit(new int[]{5,8,4,10,7,3,12,6,15}));
 	}
 }

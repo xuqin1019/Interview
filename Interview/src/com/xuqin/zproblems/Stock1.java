@@ -28,7 +28,7 @@ public class Stock1 {
 		 return max;
 	 }
 	 
-	 public int maxProfitDC(int [] prices) {     //
+	 public int maxProfitDC(int [] prices) {     //O(nlg(n))
 		 if(prices==null || prices.length==0) {
 			 return 0;
 		 }
@@ -59,7 +59,22 @@ public class Stock1 {
 				rightMaximum = prices[i];
 			}
 		}
-		
 		return Math.max(rightMaximum-leftMiddle,Math.max(maxProfitImprove(prices,start,middle),maxProfitImprove(prices,middle+1,end)));
+	}
+	
+	public int maxProfitBest(int[] prices) {    //O(n)
+
+	    if(prices==null || prices.length==0){
+	        return 0;
+	    }
+
+	    int profit = 0 ; 
+	    int min=prices[0];        
+	    for(int i = 0 ; i < prices.length;i++){
+	        min = Math.min(min,prices[i]);
+	        profit = Math.max(profit,prices[i]-min);
+	    }
+
+	    return profit;
 	}
 }
