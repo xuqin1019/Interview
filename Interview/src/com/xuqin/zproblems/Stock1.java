@@ -9,7 +9,7 @@ import java.util.Collections;
 /**
  * @author xuqin
  * LeetCode
- * 
+ * Need Review
  */
 public class Stock1 {
 	 public int maxProfit(int[] prices) {    //O(n*n) Time limit Exceeded
