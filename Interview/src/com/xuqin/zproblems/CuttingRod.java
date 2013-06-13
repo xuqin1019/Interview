@@ -46,6 +46,8 @@ public class CuttingRod {
 		System.out.println();
 		return result[length];
 	}
+	
+	
 
 	/**
 	 * @param maps
