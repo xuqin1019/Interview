@@ -1,47 +1,56 @@
+/**
+ * 
+ */
 package com.xuqin.zproblems;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * @author xuqin
+ *
+ * 
+ */
 public class ConstructBinaryTreeFromInorderAndPostorderTraversal {
 	public TreeNode buildTree(int[] inorder, int[] postorder) {
-        List<Integer> inorderList = getList(inorder);
-        List<Integer> postOrderList = getList(postorder);
-        return buildTree(inorderList, postOrderList);
-    }
-	
-	private TreeNode buildTree(List<Integer> inorderList,List<Integer> postOrderList) {
-		int rootValue = postOrderList.get(postOrderList.size()-1);
+		if(inorder==null || inorder.length==0) {
+			return null;
+		}
+		return buildTree(inorder,0,inorder.length-1,postorder,0,postorder.length-1);
+	}
+	  
+	private TreeNode buildTree(int[] inorder, int i, int j, int[] postorder,int m, int n) {
+		if(i>j) {
+			return null;
+		}
+		int rootValue = postorder[n];
+		int rootIndexOfInorder = getIndex(inorder,i,j,rootValue);
+		int size = rootIndexOfInorder-i;
 		TreeNode root = new TreeNode(rootValue);
-		int rootIndexOfInorder = inorderList.indexOf(rootValue);
-		
+		root.left = buildTree(inorder, i, rootIndexOfInorder-1, postorder, m, m+size-1);
+		root.right = buildTree(inorder, rootIndexOfInorder+1, j, postorder, m+size,n-1);
 		return root;
-		
-	}
-
-	private List<Integer> getList(int[] array) {
-		List<Integer> list = new ArrayList<Integer>();
-		for(int i : array) {
-			list.add(i);
-		}
-		return list;
 	}
 
 	
-	private int getIndex(int[] inorder, int rootValue) {
-		int i=0;
-		for(i=0;i<inorder.length;++i) {
-			if(inorder[i]==rootValue) {
-				return i;
+	private int getIndex(int[] inorder, int i, int j, int rootValue) {
+		int index = i;
+		for(int k=i;k<=j;++k) {
+			if(rootValue==inorder[k]) {
+				index=k;
+				break;
 			}
-		}
-		return i;
+		} 
+		return index;
 	}
 
-	public static class TreeNode {
+	public class TreeNode {
 		int val;
 		TreeNode left;
 		TreeNode right;
 		TreeNode(int x) { val = x; }
 	}
-}
+	
+	public static void main(String[] args) {
+		ConstructBinaryTreeFromInorderAndPostorderTraversal constructBinaryTreeFromInorderAndPostorderTraversal = new ConstructBinaryTreeFromInorderAndPostorderTraversal();
+		TreeNode treeNode = constructBinaryTreeFromInorderAndPostorderTraversal.buildTree(new int[]{4, 2,1,5,7,3,6},new int[]{4,2,7,5,6,3,1});
+		System.out.println(treeNode);
+	}
+}	
