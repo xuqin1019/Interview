@@ -13,29 +13,26 @@ import java.util.Stack;
  */
 public class BinaryTreeInorderTraversal {
 	public ArrayList<Integer> inorderTraversal(TreeNode root) {
-		
 		ArrayList<Integer> results = new ArrayList<Integer>();
-		
-		if(root==null) {
-			return results;
-		}
-		
 		Stack<TreeNode> stack = new Stack<TreeNode>();
-		TreeNode node = root;
-		stack.add(node);
-		//results.add(node.val);
-		while(!stack.isEmpty()) {
-			TreeNode treeNode = stack.pop();
-			results.add(treeNode.val);
-			if(treeNode.left!=null) {
-				stack.push(treeNode.left);
-			}
-			if(treeNode.right!=null) {
-				stack.push(treeNode.right);
+		TreeNode currentNode = root;
+		boolean over = false;
+		while(!over) {
+			if(currentNode!=null) {
+				stack.push(currentNode);
+				currentNode=currentNode.left;
+			} else {
+				if(!stack.isEmpty()) {
+					currentNode = stack.pop();
+					results.add(currentNode.val);
+					currentNode = currentNode.right;
+				} else {
+					over = true;
+				}
 			}
 		}
 		return results;
-    }	
+	}	
 	
 	public static class TreeNode {
 		 int val;
