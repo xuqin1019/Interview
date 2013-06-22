@@ -45,6 +45,7 @@ public class Permutations {
 		int [] subNum = new int[num.length-1];
 		System.arraycopy(num, 0, subNum, 0, exclude);
 		System.arraycopy(num,exclude+1, subNum, exclude, num.length-exclude-1);
+		
 		return subNum;
 	}
 
