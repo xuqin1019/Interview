@@ -35,12 +35,14 @@ public class InsertInterval {
         		
         		if(times==0 && newInterval.end<interval.start) {
         			results.add(newInterval);
+        			times++;
         		}
         		
         		if(shouldAdd) {
         			results.add(newInterval);
         			shouldAdd = false;
         		}
+        		
         		results.add(interval);
         	}
         }
@@ -80,16 +82,19 @@ public class InsertInterval {
 	    }
 	}
 	
+	
+	//[[6,10],[13,16],[19,19],[23,25],[34,39],[41,43],[49,51]], [27,27]
 	public static void main(String[] args) {
 		InsertInterval insertInterval = new InsertInterval();
 		ArrayList<Interval> list = new ArrayList<Interval>();
-		list.add(new Interval(0, 3));
-		list.add(new Interval(4, 11));
-		list.add(new Interval(13,17));
-		list.add(new Interval(18,21));
-	//	list.add(new Interval(12,16));
-	//	list.add(new Interval(1, 5));
-		ArrayList<Interval> result = insertInterval.insert(list, new Interval(12, 12));
+		list.add(new Interval(6, 10));
+		list.add(new Interval(13, 16));
+		list.add(new Interval(19,19));
+		list.add(new Interval(23,25));
+		list.add(new Interval(34,39));
+		list.add(new Interval(41, 43));
+		list.add(new Interval(49, 51));
+		ArrayList<Interval> result = insertInterval.insert(list, new Interval(27, 27));
 		for(Interval interval : result) {
 			System.out.println(interval.start + " " + interval.end);
 		}
