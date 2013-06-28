@@ -20,6 +20,7 @@ public class LongestSubstringWithoutRepeatingCharacters {
 		 int [] table = new int[26];
 		 Map<Character,Integer> indexes = new HashMap<Character, Integer>();
 		 int start = 0;
+		 
 		 for(int i=0;i<s.length();++i) {
 			 Character c = s.charAt(i);
 			 if(table[c-'a']==0) {     //not exists
@@ -30,9 +31,14 @@ public class LongestSubstringWithoutRepeatingCharacters {
 				 
 				 start = indexes.get(c)+1;
 				 
-				 table[c-'a']=1;
+				 for(int m=0;m<start;++m) {
+					 table[s.charAt(m)-'a']=0;
+				 }
 				 
-				 indexes.remove(c);
+				 for(int m=start;m<=i;++m) {
+					 table[s.charAt(m)-'a']=1;
+				 }
+				 
 				 indexes.put(c, i);
 				 
 				 max = Math.max(max,i-start+1);
@@ -44,6 +50,6 @@ public class LongestSubstringWithoutRepeatingCharacters {
 	 
 	 public static void main(String[] args) {
 		 LongestSubstringWithoutRepeatingCharacters longestSubstringWithoutRepeatingCharacters = new LongestSubstringWithoutRepeatingCharacters();
-		 System.out.println(longestSubstringWithoutRepeatingCharacters.lengthOfLongestSubstring("abcddcbae"));
+		 System.out.println(longestSubstringWithoutRepeatingCharacters.lengthOfLongestSubstring("bbbbb"));
 	 }
 }
