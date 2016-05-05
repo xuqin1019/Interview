@@ -28,22 +28,8 @@ bin
 *.bat
 *.log
 *.log.*
-my_command.txt
-mvneclipse.sh
-mvnclean.sh
-htdocs/htdocs/**/*
 
-.amateras
-app/tester-rest/test-output
-test-output
-test-output/**/*
-.sofa.json
-sofaskd/sofa/resources/dynamiclogagent.jar
-sofaskd/sofa/resources/hotcode2.jar
-sofaskd/sofa/s
-sofasdk/sofa/resources/dynamiclogagent.jar
-sofasdk/sofa/resources/hotcode2.jar
-
-global-test-config.properties
-central-cloud/test/src/test/resources/sofaconfig/sofa-test-config.properties
-central-cloud/test/src/test/resources/sofaconfig/env/private/dev/sofa-test-config.properties
+Interview/libs/*
+Interview/bin/*
+WorksApplications/libs/*
+WorksApplications/bin/*
