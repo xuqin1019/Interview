@@ -5,84 +5,89 @@ import java.util.List;
 
 class Node<T> {
 	T value;
-	Node<T> next=null;
+	Node<T> next;
 	
 	public Node(T value) {
 		this.value = value;
-		this.next=null;
 	}
 }
 
 public class LinkList<T> {
-	private Node<T> header=null; 
+	private Node<T> head = null;
 	private int size;
 	
 	public LinkList() {
-		header = new Node<T>(null);
+		head = null;
 		size=0;
 	}
 	
 	public boolean isEmpty() {
-		return header==null || header.next==null;
+		return head == null;
 	}
 	
 	public Node<T> find(T value) {
-		if(isEmpty()) {
-			System.out.println("empty list");
-			return null;
-		}
-		Node<T> node = header;
-		while(node.next!=null) {
-			if(node.next.value.equals(value)) {
-				return node.next;
-			} else {
-				node=node.next;
+		Node<T> node = head;
+		while(node != null) {
+			if(node.value.equals(value)) {
+				return node;
 			}
+			node = node.next;
 		}
 		return null;
 	}
 	
 	public Node<T> insert(T value) {
-		if(header==null) {
-			header = new Node<T>(null);
+		Node node = new Node(value);
+		++size;
+		if(head == null) {
+			head = node;
+			return head;
 		}
-		Node<T> node = header;
-		while(node.next!=null) {
-			node=node.next;
-		}
-		Node<T> newNode = new Node<T>(value);
-		node.next=newNode;
-		size++;
-		return newNode;
+		node.next = head;
+		head = node;
+		return head;
 	}
 	
-	public boolean delete(T value) {
-		if(isEmpty()) {
-			System.out.println("empty list");
-			return false;
+	public int delete(T value) {
+		Node<T> node = head;
+		if(node == null) {
+			return 0;
 		}
-		Node<T> node = header;
-		while(node.next!=null) {
-			if(node.next.value.equals(value)) {
-				node.next=node.next.next;
-				size--;
-				return true;
+		if(node.next==null) {
+			if(node.value.equals(value)) {
+				head = null;
+				--size;
+				return 1;
+			}
+			return 0;
+		}
+		//at least two items in the list
+		int deleteNum = 0;
+		Node<T> pre = null;
+		while(node != null ) {
+			if(node.value.equals(value)) {
+				if(pre == null) {
+					head = node.next;
+					node = node.next;
+				} else {
+					pre.next = node.next;
+					node = pre.next;
+				}
+				--size;
+				deleteNum++;
 			} else {
-				node=node.next;
+				pre = node;
+				node = node.next;
 			}
 		}
-		return false;
+		return deleteNum;
 	}
 	
 	public Object[] getValues() {
-		if(isEmpty()) {
-			return null;
-		}
 		List<T> list = new ArrayList<T>();
-		//Object [] values = new Object[size];
-		Node<T> node = header;
-		while(node.next!=null) {
-			list.add(node.next.value);
+		Node<T> node = head;
+		while(node != null) {
+			list.add(node.value);
 			node = node.next;
 		}
 		return list.toArray(new Object[size]);
